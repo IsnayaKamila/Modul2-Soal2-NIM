@@ -44,6 +44,11 @@ printf("coba %d",tinggi_bunga);
 return 0;
 }
 
+// https://www.geeksforgeeks.org/dsa/search-an-element-in-a-linked-list-iterative-and-recursive/
+// https://www.mycplus.com/computer-science/data-structures/linked-list-in-c/
+
+
+
 
 
 
