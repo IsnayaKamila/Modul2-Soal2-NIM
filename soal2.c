@@ -1,7 +1,7 @@
 // Nama         : Isnaya Zalfa Kamila 
 // NIM          : 13224028 
 // Deskripsi    : Program untuk memetakan bunga matahari mana yang ga kena matahari 
-// Modul        : 02 - Dynamic Array 
+// Modul        : 02 - Dynamic Array tes
 
 # include <stdio.h>
 # include <stdbool.h>
