@@ -17,190 +17,224 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Case 01 - Contoh dari soal
+      # Bunga indeks 1 (tinggi 3) terhimpit 5 dan 6
+      - name: Case 01 - Tiga bunga, dipisah koma (jawab 1)
         id: case-01
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 01 - Contoh dari soal
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 01 - Tiga bunga, dipisah koma (jawab 1)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            5 KEY123
-            2 KEY123 dlrow
-            1 KEY123 olleh
-            3 XXX999 rahcaw
-            4 KEY123 siht
-            5 KEY12 nik
+            5,3,6
           expected-output: |
-            hello world this
-            LENGTH 14
+            1
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 02 - Semua paket valid, input berurutan
+      # Input tanpa koma, hanya spasi
+      - name: Case 02 - Dipisah spasi (jawab 1 3)
         id: case-02
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 02 - Semua paket valid, input berurutan
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 02 - Dipisah spasi (jawab 1 3)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            3 ALPHA
-            1 ALPHA ytiruces
-            2 ALPHA egassem
-            3 ALPHA tset
+            5 3 6 2 8
           expected-output: |
-            security message test
-            LENGTH 19
+            1 3
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 03 - Semua paket valid, input terbalik
+      # Pola zigzag, 3 bunga terhimpit
+      - name: Case 03 - Banyak bunga terhimpit (jawab 1 3 5)
         id: case-03
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 03 - Semua paket valid, input terbalik
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 03 - Banyak bunga terhimpit (jawab 1 3 5)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            4 MARS
-            4 MARS sram
-            3 MARS erolpxe
-            2 MARS lliw
-            1 MARS revor
+            9,4,7,2,6,1,8
           expected-output: |
-            rover will explore mars
-            LENGTH 20
+            1 3 5
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 04 - Kode case-sensitive
+      # Urutan menaik, tidak ada lembah
+      - name: Case 04 - Tinggi naik terus, tidak ada yang terhimpit (jawab NONE)
         id: case-04
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 04 - Kode case-sensitive
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 04 - Tinggi naik terus, tidak ada yang terhimpit (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            6 Code9
-            2 code9 cba
-            1 Code9 tac
-            4 Code9 god
-            3 CODE9 zyx
-            5 Code9 nus
+            1,2,3,4,5
           expected-output: |
-            cat dog sun
-            LENGTH 9
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 05 - Hanya satu paket valid
+      # Bunga terendah ada di ujung (indeks 0 dan 4)
+      - name: Case 05 - Bunga ujung kiri dan kanan tidak dihitung (jawab NONE)
         id: case-05
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 05 - Hanya satu paket valid
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 05 - Bunga ujung kiri dan kanan tidak dihitung (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            3 SECRET
-            1 PUBLIC cba
-            2 SECRET ahpla
-            3 OPEN ateb
+            1,5,7,9,2
           expected-output: |
-            alpha
-            LENGTH 5
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 06 - Tidak ada paket valid
+      # Perbandingan harus strict, 3 tidak lebih rendah dari 3
+      - name: Case 06 - Tinggi sama bukan terhimpit (jawab NONE)
         id: case-06
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 06 - Tidak ada paket valid
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 06 - Tinggi sama bukan terhimpit (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            3 ZULU
-            1 ALFA ahpla
-            2 BRAVO ovarb
-            3 DELTA atled
-          expected-output: "000"
+            5,3,3,5
+          expected-output: |
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 07 - Kode harus sama persis
+      # n=1, loop tidak jalan
+      - name: Case 07 - Hanya satu bunga (jawab NONE)
         id: case-07
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 07 - Kode harus sama persis
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 07 - Hanya satu bunga (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            4 KEY123
-            1 KEY1234 xob
-            2 KEY123 ruo
-            3 KEY12 eno
-            4 KEY123 tsil
+            7
           expected-output: |
-            our list
-            LENGTH 7
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 08 - Indeks loncat, palindrom, satu huruf
+      # n=2, tidak ada bunga di tengah
+      - name: Case 08 - Hanya dua bunga (jawab NONE)
         id: case-08
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 08 - Indeks loncat, palindrom, satu huruf
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 08 - Hanya dua bunga (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            5 PAL
-            10 PAL level
-            20 PAL a
-            15 PAL noon
-            5 PAL I
-            25 PAL rotor
+            3,8
           expected-output: |
-            I level noon a rotor
-            LENGTH 16
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 09 - Edge case N = 0
+      # Jumlah bunga paling sedikit yang bisa terhimpit
+      - name: Case 09 - Tiga bunga minimum (jawab 1)
         id: case-09
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 09 - Edge case N = 0
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
-          input: "0 KEY"
-          expected-output: "000"
+          test-name: Case 09 - Tiga bunga minimum (jawab 1)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
+          input: |
+            8,1,8
+          expected-output: |
+            1
           comparison-method: exact
           timeout: 2
           max-score: 5
 
-      - name: Case 10 - Edge case N = 1
+      # 17 bunga, melewati kapasitas awal 10 sehingga realloc dipakai
+      - name: Case 10 - Lebih dari 10 bunga, uji realloc (jawab 1 3 5 7 9 11 13 15)
         id: case-10
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: Case 10 - Edge case N = 1
-          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal2 soal2.c
-          command: ./soal2
+          test-name: Case 10 - Lebih dari 10 bunga, uji realloc (jawab 1 3 5 7 9 11 13 15)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
           input: |
-            1 A
-            1 A a
+            10,1,10,2,10,3,10,4,10,5,10,6,10,7,10,8,10
           expected-output: |
-            a
-            LENGTH 1
+            1 3 5 7 9 11 13 15
+          comparison-method: exact
+          timeout: 2
+          max-score: 5
+
+      # Baris input berakhir dengan EOF, bukan newline
+      - name: Case 11 - Input tanpa newline di akhir (jawab 1)
+        id: case-11
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          test-name: Case 11 - Input tanpa newline di akhir (jawab 1)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
+          input: "5,3,6"
+          expected-output: |
+            1
+          comparison-method: exact
+          timeout: 2
+          max-score: 5
+
+      # Format '5, 3, 6'
+      - name: Case 12 - Koma diikuti spasi (jawab 1 3)
+        id: case-12
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          test-name: Case 12 - Koma diikuti spasi (jawab 1 3)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
+          input: |
+            5, 3, 6, 2, 9
+          expected-output: |
+            1 3
+          comparison-method: exact
+          timeout: 2
+          max-score: 5
+
+      # Ketinggian bernilai negatif dan nol
+      - name: Case 13 - Angka nol dan negatif (jawab 1 3)
+        id: case-13
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          test-name: Case 13 - Angka nol dan negatif (jawab 1 3)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
+          input: |
+            0,-5,0,-3,-1
+          expected-output: |
+            1 3
+          comparison-method: exact
+          timeout: 2
+          max-score: 5
+
+      # Tidak ada angka sama sekali, n=0
+      - name: Case 14 - Input kosong (jawab NONE)
+        id: case-14
+        uses: classroom-resources/autograding-io-grader@v1
+        with:
+          test-name: Case 14 - Input kosong (jawab NONE)
+          setup-command: gcc -std=c11 -O2 -Wall -Wextra -o soal3 soal3.c
+          command: ./soal3
+          input: "\n"
+          expected-output: |
+            NONE
           comparison-method: exact
           timeout: 2
           max-score: 5
@@ -218,5 +252,9 @@ jobs:
           CASE-08_RESULTS: "${{steps.case-08.outputs.result}}"
           CASE-09_RESULTS: "${{steps.case-09.outputs.result}}"
           CASE-10_RESULTS: "${{steps.case-10.outputs.result}}"
+          CASE-11_RESULTS: "${{steps.case-11.outputs.result}}"
+          CASE-12_RESULTS: "${{steps.case-12.outputs.result}}"
+          CASE-13_RESULTS: "${{steps.case-13.outputs.result}}"
+          CASE-14_RESULTS: "${{steps.case-14.outputs.result}}"
         with:
-          runners: case-01,case-02,case-03,case-04,case-05,case-06,case-07,case-08,case-09,case-10
+          runners: case-01,case-02,case-03,case-04,case-05,case-06,case-07,case-08,case-09,case-10,case-11,case-12,case-13,case-14
